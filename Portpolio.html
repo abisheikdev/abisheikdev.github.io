@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Abisheik Murugesan – Salesforce Developer</title>
+    <link rel="icon" type="image/png" href="Assets/Salesforce.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
@@ -12,14 +13,20 @@
         :root {
             --navy-deep: #071428;
             --navy-mid: #0D2137;
+            --blue: #0176D3;
+            --blue-deep: #014486;
             --teal: #00C5D4;
+            --teal-dark: #067F8C;
             --teal-light: #7EEAF0;
             --orange: #F7931E;
-            --bg: #F5F7FA;
+            --bg: #F7F9FC;
             --surface: #FFFFFF;
-            --text: #1A2B3C;
-            --muted: #64748B;
-            --border: #E2E8F0;
+            --text: #14213D;
+            --muted: #5B6B82;
+            --border: #E4E9F1;
+            --shadow-sm: 0 2px 10px rgba(20, 33, 61, 0.05);
+            --shadow-md: 0 10px 32px rgba(20, 33, 61, 0.08);
+            --shadow-lg: 0 20px 55px rgba(20, 33, 61, 0.12);
         }
 
         html { scroll-behavior: smooth; }
@@ -36,21 +43,26 @@
             position: fixed;
             top: 0; left: 0; right: 0;
             z-index: 100;
-            background: rgba(7, 20, 40, 0.94);
+            background: rgba(255, 255, 255, 0.85);
             backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
             padding: 0 2.5rem;
             display: flex;
             align-items: center;
             justify-content: space-between;
             height: 64px;
-            border-bottom: 1px solid rgba(0, 197, 212, 0.15);
+            border-bottom: 1px solid var(--border);
+            box-shadow: var(--shadow-sm);
         }
 
         .nav-logo {
             font-family: 'Space Grotesk', sans-serif;
             font-weight: 700;
             font-size: 1.1rem;
-            color: var(--teal);
+            background: linear-gradient(120deg, var(--blue) 0%, var(--teal) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             letter-spacing: -0.01em;
         }
 
@@ -61,7 +73,7 @@
         }
 
         .nav-links a {
-            color: rgba(255,255,255,0.65);
+            color: var(--muted);
             text-decoration: none;
             font-size: 0.85rem;
             font-weight: 500;
@@ -69,12 +81,16 @@
             transition: color 0.2s;
         }
 
-        .nav-links a:hover { color: var(--teal); }
+        .nav-links a:hover { color: var(--blue); }
 
         /* ── HERO ── */
         #hero {
             min-height: 100vh;
-            background: linear-gradient(135deg, #071428 0%, #0D2137 55%, #091C30 100%);
+            background:
+                radial-gradient(ellipse 900px 600px at 12% -5%, rgba(1, 118, 211, 0.10), transparent 60%),
+                radial-gradient(ellipse 800px 700px at 90% 15%, rgba(0, 197, 212, 0.12), transparent 55%),
+                radial-gradient(ellipse 700px 500px at 50% 100%, rgba(247, 147, 30, 0.06), transparent 60%),
+                linear-gradient(180deg, #FBFDFF 0%, #F5F9FC 100%);
             display: flex;
             align-items: center;
             position: relative;
@@ -87,9 +103,10 @@
             position: absolute;
             inset: 0;
             background-image:
-                linear-gradient(rgba(0, 197, 212, 0.05) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0, 197, 212, 0.05) 1px, transparent 1px);
+                linear-gradient(rgba(1, 118, 211, 0.045) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(1, 118, 211, 0.045) 1px, transparent 1px);
             background-size: 64px 64px;
+            mask-image: radial-gradient(ellipse 80% 70% at 50% 30%, black 40%, transparent 90%);
             animation: gridMove 25s linear infinite;
         }
 
@@ -113,80 +130,76 @@
         .hero-eyebrow {
             font-family: 'Inter', monospace;
             font-size: 0.78rem;
-            color: var(--teal);
+            color: var(--teal-dark);
             letter-spacing: 0.18em;
             text-transform: uppercase;
             margin-bottom: 1.1rem;
-            opacity: 0;
-            animation: fadeUp 0.6s ease 0.2s forwards;
+            animation: fadeUp 0.6s ease 0.2s both;
         }
 
         .hero-name {
             font-family: 'Space Grotesk', sans-serif;
             font-size: clamp(2.6rem, 5vw, 4.2rem);
             font-weight: 700;
-            color: #FFFFFF;
+            color: var(--text);
             line-height: 1.08;
             letter-spacing: -0.03em;
             margin-bottom: 0.85rem;
-            opacity: 0;
-            animation: fadeUp 0.6s ease 0.35s forwards;
+            animation: fadeUp 0.6s ease 0.35s both;
         }
 
         .hero-name span {
-            background: linear-gradient(130deg, var(--teal) 0%, var(--teal-light) 100%);
+            background: linear-gradient(130deg, var(--blue) 0%, var(--teal) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
 
         .hero-role {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.2rem;
-            font-weight: 500;
-            color: rgba(255,255,255,0.7);
-            margin-bottom: 1.6rem;
-            min-height: 1.8rem;
-            opacity: 0;
-            animation: fadeUp 0.6s ease 0.5s forwards;
-        }
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: var(--muted);
+    margin-bottom: 1.6rem;
+    min-height: 1.8rem;
+    animation: fadeUp 0.6s ease 0.5s both;
+}
 
-        .typing-cursor {
-            display: inline-block;
-            width: 2px;
-            height: 1.1em;
-            background: var(--teal);
-            margin-left: 3px;
-            vertical-align: middle;
-            animation: blink 0.85s step-end infinite;
-        }
+   .typing-cursor {
+    display: inline-block;
+    width: 2.5px;
+    height: 1.1em;
+    background: var(--blue);
+    margin-left: 3px;
+    vertical-align: middle;
+    border-radius: 2px;
+    animation: blink 1s ease-in-out infinite;  
+}
 
-        @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50%       { opacity: 0; }
-        }
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    45%, 55% { opacity: 0; }                
+}
 
         .hero-summary {
             font-size: 0.94rem;
-            color: rgba(255,255,255,0.55);
+            color: var(--muted);
             line-height: 1.85;
             margin-bottom: 2.2rem;
             max-width: 520px;
-            opacity: 0;
-            animation: fadeUp 0.6s ease 0.65s forwards;
+            animation: fadeUp 0.6s ease 0.65s both;
         }
 
         .hero-cta {
             display: flex;
             gap: 1rem;
             flex-wrap: wrap;
-            opacity: 0;
-            animation: fadeUp 0.6s ease 0.8s forwards;
+            animation: fadeUp 0.6s ease 0.8s both;
         }
 
         .btn-primary {
-            background: var(--teal);
-            color: var(--navy-deep);
+            background: linear-gradient(120deg, var(--blue) 0%, var(--teal) 100%);
+            color: #FFFFFF;
             padding: 0.8rem 1.8rem;
             border-radius: 7px;
             text-decoration: none;
@@ -195,16 +208,18 @@
             letter-spacing: 0.01em;
             transition: all 0.2s;
             font-family: 'Space Grotesk', sans-serif;
+            box-shadow: 0 10px 28px rgba(1, 118, 211, 0.28);
         }
 
         .btn-primary:hover {
-            background: var(--teal-light);
             transform: translateY(-2px);
+            box-shadow: 0 14px 34px rgba(1, 118, 211, 0.36);
         }
 
         .btn-outline {
-            border: 1.5px solid rgba(0, 197, 212, 0.35);
-            color: rgba(255,255,255,0.8);
+            border: 1.5px solid var(--border);
+            background: rgba(255,255,255,0.6);
+            color: var(--text);
             padding: 0.8rem 1.8rem;
             border-radius: 7px;
             text-decoration: none;
@@ -214,102 +229,142 @@
         }
 
         .btn-outline:hover {
-            border-color: var(--teal);
-            color: var(--teal);
+            border-color: var(--blue);
+            color: var(--blue);
+            box-shadow: var(--shadow-sm);
         }
 
-        /* ── ORBIT VISUAL ── */
-        .hero-visual {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            animation: fadeIn 1s ease 0.9s forwards;
-        }
+      /* ── ORBIT VISUAL ── */
+.hero-visual {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: fadeIn 1s ease 0.9s both;
+}
 
-        .orbit-container {
-            position: relative;
-            width: 360px;
-            height: 360px;
-        }
+.orbit-container {
+    position: relative;
+    width: 420px;
+    height: 420px;
+}
 
-        .orbit-center {
-            position: absolute;
-            top: 50%; left: 50%;
-            transform: translate(-50%, -50%);
-            width: 84px; height: 84px;
-            background: linear-gradient(135deg, rgba(0,197,212,0.25), rgba(0,197,212,0.08));
-            border: 1.5px solid rgba(0,197,212,0.5);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2.2rem;
-            box-shadow: 0 0 48px rgba(0, 197, 212, 0.3), inset 0 0 20px rgba(0,197,212,0.05);
-            z-index: 5;
-        }
+.orbit-center {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 108px; height: 108px;
+    background: #FFFFFF;
+    border: 1.5px solid rgba(1, 118, 211, 0.18);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 22px;
+    box-shadow: 0 0 0 12px rgba(1, 118, 211, 0.05), 0 12px 36px rgba(1, 118, 211, 0.22);
+    z-index: 5;
+}
 
-        .orbit-ring {
-            position: absolute;
-            top: 50%; left: 50%;
-            border-radius: 50%;
-            transform: translate(-50%, -50%);
-        }
+.orbit-center img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
 
-        .ring-1 {
-            width: 168px; height: 168px;
-            border: 1px solid rgba(0, 197, 212, 0.25);
-            animation: spin 9s linear infinite;
-        }
-        .ring-2 {
-            width: 258px; height: 258px;
-            border: 1px solid rgba(0, 197, 212, 0.18);
-            animation: spin 16s linear infinite reverse;
-        }
-        .ring-3 {
-            width: 348px; height: 348px;
-            border: 1px solid rgba(0, 197, 212, 0.1);
-            animation: spin 22s linear infinite;
-        }
+.orbit-ring {
+    position: absolute;
+    top: 50%; left: 50%;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+}
 
-        @keyframes spin {
-            from { transform: translate(-50%, -50%) rotate(0deg); }
-            to   { transform: translate(-50%, -50%) rotate(360deg); }
-        }
+.ring-1 {
+    width: 220px; height: 220px;
+    border: 1px solid rgba(1, 118, 211, 0.2);
+    animation: spin 9s linear infinite;
+}
 
-        .orbit-node {
-            position: absolute;
-            background: rgba(13, 33, 55, 0.95);
-            border: 1px solid rgba(0, 197, 212, 0.45);
-            border-radius: 20px;
-            padding: 4px 12px;
-            font-size: 0.62rem;
-            font-weight: 700;
-            color: var(--teal);
-            font-family: 'Space Grotesk', sans-serif;
-            white-space: nowrap;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            box-shadow: 0 0 12px rgba(0,197,212,0.2);
-        }
+.ring-2 {
+    width: 320px; height: 320px;
+    border: 1px solid rgba(0, 197, 212, 0.22);
+    animation: spin 16s linear infinite reverse;
+}
 
-        .node-apex      { top: -13px;  left: 50%; transform: translateX(-50%); }
-        .node-lwc       { bottom: -13px; left: 50%; transform: translateX(-50%); }
-        .node-flow      { top: -13px;  left: 50%; transform: translateX(-50%); }
-        .node-agentforce{ bottom: -13px; left: 50%; transform: translateX(-50%); }
-        .node-api       { top: -13px;  left: 50%; transform: translateX(-50%); }
-        .node-cloud     { bottom: -13px; left: 50%; transform: translateX(-50%); }
+.ring-3 {
+    width: 418px; height: 418px;
+    border: 1px solid rgba(1, 118, 211, 0.12);
+    animation: spin 22s linear infinite;
+}
 
-        @keyframes fadeUp {
-            from { opacity: 0; transform: translateY(22px); }
-            to   { opacity: 1; transform: translateY(0); }
-        }
+@keyframes spin {
+    from { transform: translate(-50%, -50%) rotate(0deg); }
+    to   { transform: translate(-50%, -50%) rotate(360deg); }
+}
 
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to   { opacity: 1; }
-        }
+/* ── NODE BASE STYLE ── */
+.orbit-node {
+    position: absolute;
+    background: #FFFFFF;
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 5px 13px;
+    font-size: 0.62rem;
+    font-weight: 700;
+    color: var(--teal-dark);
+    font-family: 'Space Grotesk', sans-serif;
+    white-space: nowrap;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    box-shadow: var(--shadow-sm);
+}
 
+/* ── NODE POSITIONS ── */
+.node-apex       { top: -13px;    left: 50%; }
+.node-lwc        { bottom: -13px; left: 50%; }
+.node-flow       { top: -13px;    left: 50%; }
+.node-agentforce { bottom: -13px; left: 50%; }
+.node-api        { top: -13px;    left: 50%; }
+.node-cloud      { bottom: -13px; left: 50%; }
+
+/* ── COUNTER-ROTATION (keeps text upright) ── */
+/* Ring 1 spins forward → nodes spin backward at same speed */
+.ring-1 .orbit-node {
+    animation: counterSpin1 9s linear infinite;
+}
+
+/* Ring 2 spins reverse → nodes spin forward at same speed */
+.ring-2 .orbit-node {
+    animation: counterSpin2 16s linear infinite;
+}
+
+/* Ring 3 spins forward → nodes spin backward at same speed */
+.ring-3 .orbit-node {
+    animation: counterSpin3 22s linear infinite;
+}
+
+@keyframes counterSpin1 {
+    from { transform: translateX(-50%) rotate(0deg); }
+    to   { transform: translateX(-50%) rotate(-360deg); }
+}
+
+@keyframes counterSpin2 {
+    from { transform: translateX(-50%) rotate(0deg); }
+    to   { transform: translateX(-50%) rotate(360deg); }
+}
+
+@keyframes counterSpin3 {
+    from { transform: translateX(-50%) rotate(0deg); }
+    to   { transform: translateX(-50%) rotate(-360deg); }
+}
+
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(22px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
         /* ── SECTION COMMON ── */
         section { padding: 5.5rem 2.5rem; }
 
@@ -324,7 +379,7 @@
             font-weight: 600;
             letter-spacing: 0.22em;
             text-transform: uppercase;
-            color: var(--teal);
+            color: var(--teal-dark);
             margin-bottom: 0.6rem;
         }
 
@@ -348,16 +403,17 @@
         }
 
         .skill-card {
-            background: var(--bg);
+            background: var(--surface);
             border: 1px solid var(--border);
             border-radius: 14px;
             padding: 1.6rem;
+            box-shadow: var(--shadow-sm);
             transition: border-color 0.25s, box-shadow 0.25s, transform 0.25s;
         }
 
         .skill-card:hover {
-            border-color: rgba(0, 197, 212, 0.4);
-            box-shadow: 0 6px 24px rgba(0, 197, 212, 0.1);
+            border-color: rgba(1, 118, 211, 0.35);
+            box-shadow: var(--shadow-md);
             transform: translateY(-3px);
         }
 
@@ -370,8 +426,8 @@
 
         .skill-icon {
             width: 38px; height: 38px;
-            background: linear-gradient(135deg, rgba(0,197,212,0.2), rgba(0,197,212,0.05));
-            border: 1px solid rgba(0,197,212,0.25);
+            background: linear-gradient(135deg, rgba(1,118,211,0.14), rgba(0,197,212,0.06));
+            border: 1px solid rgba(1,118,211,0.2);
             border-radius: 9px;
             display: flex;
             align-items: center;
@@ -431,16 +487,23 @@
             left: -2.625rem;
             top: 10px;
             width: 13px; height: 13px;
-            background: var(--teal);
+            background: linear-gradient(135deg, var(--blue), var(--teal));
             border-radius: 50%;
-            box-shadow: 0 0 0 4px rgba(0,197,212,0.15), 0 0 12px rgba(0,197,212,0.4);
+            box-shadow: 0 0 0 4px rgba(1,118,211,0.12), 0 0 12px rgba(1,118,211,0.35);
         }
 
         .timeline-card {
-            background: white;
+            background: var(--surface);
             border: 1px solid var(--border);
             border-radius: 14px;
             padding: 1.85rem;
+            box-shadow: var(--shadow-sm);
+            transition: box-shadow 0.25s, transform 0.25s;
+        }
+
+        .timeline-card:hover {
+            box-shadow: var(--shadow-md);
+            transform: translateY(-2px);
         }
 
         .job-company {
@@ -452,7 +515,7 @@
 
         .job-role {
             font-size: 0.9rem;
-            color: var(--teal);
+            color: var(--blue);
             font-weight: 600;
             margin: 0.3rem 0 0.5rem;
         }
@@ -502,7 +565,7 @@
             content: '→';
             position: absolute;
             left: 0;
-            color: var(--teal);
+            color: var(--blue);
             font-size: 0.78rem;
             top: 2px;
         }
@@ -517,32 +580,28 @@
         }
 
         .cert-card {
-            background: var(--bg);
+            background: var(--surface);
             border: 1px solid var(--border);
             border-radius: 14px;
             padding: 1.5rem 1.4rem;
             display: flex;
             align-items: center;
-            gap: 1.1rem;
+            gap: 1.2rem;
+            box-shadow: var(--shadow-sm);
             transition: all 0.25s;
         }
 
         .cert-card:hover {
             transform: translateY(-3px);
-            box-shadow: 0 10px 32px rgba(247, 147, 30, 0.14);
-            border-color: rgba(247, 147, 30, 0.35);
+            box-shadow: var(--shadow-md);
+            border-color: rgba(1, 118, 211, 0.3);
         }
 
         .cert-badge {
-            width: 50px; height: 50px;
-            background: linear-gradient(135deg, #F7931E, #FFB84D);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
+            width: 56px; height: 56px;
             flex-shrink: 0;
-            box-shadow: 0 4px 14px rgba(247,147,30,0.3);
+            object-fit: contain;
+            filter: drop-shadow(0 4px 10px rgba(20, 33, 61, 0.16));
         }
 
         .cert-name {
@@ -564,7 +623,7 @@
         #education { background: var(--bg); }
 
         .edu-card {
-            background: white;
+            background: var(--surface);
             border: 1px solid var(--border);
             border-radius: 14px;
             padding: 2.1rem;
@@ -572,12 +631,19 @@
             gap: 1.6rem;
             align-items: flex-start;
             max-width: 680px;
+            box-shadow: var(--shadow-sm);
+            transition: box-shadow 0.25s, transform 0.25s;
+        }
+
+        .edu-card:hover {
+            box-shadow: var(--shadow-md);
+            transform: translateY(-2px);
         }
 
         .edu-icon {
             width: 58px; height: 58px;
-            background: linear-gradient(135deg, rgba(0,197,212,0.2), rgba(0,197,212,0.05));
-            border: 1px solid rgba(0,197,212,0.25);
+            background: linear-gradient(135deg, rgba(1,118,211,0.16), rgba(0,197,212,0.06));
+            border: 1px solid rgba(1,118,211,0.22);
             border-radius: 14px;
             display: flex;
             align-items: center;
@@ -610,14 +676,17 @@
         .edu-meta span { color: var(--muted); }
 
         .edu-meta strong {
-            color: var(--teal);
+            color: var(--blue);
             font-weight: 600;
         }
 
         /* ── CONTACT ── */
         #contact {
-            background: linear-gradient(135deg, #071428 0%, #0D2137 100%);
-            color: white;
+            background:
+                radial-gradient(ellipse 800px 500px at 85% 0%, rgba(1, 118, 211, 0.08), transparent 55%),
+                radial-gradient(ellipse 700px 500px at 5% 100%, rgba(0, 197, 212, 0.10), transparent 55%),
+                var(--bg);
+            color: var(--text);
             position: relative;
             overflow: hidden;
         }
@@ -627,13 +696,14 @@
             position: absolute;
             inset: 0;
             background-image:
-                linear-gradient(rgba(0, 197, 212, 0.04) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0, 197, 212, 0.04) 1px, transparent 1px);
+                linear-gradient(rgba(1, 118, 211, 0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(1, 118, 211, 0.04) 1px, transparent 1px);
             background-size: 64px 64px;
+            mask-image: radial-gradient(ellipse 80% 70% at 50% 40%, black 30%, transparent 90%);
         }
 
         #contact .container { position: relative; z-index: 1; }
-        #contact .section-title { color: white; }
+        #contact .section-title { color: var(--text); }
 
         .contact-grid {
             display: flex;
@@ -645,29 +715,39 @@
             display: flex;
             align-items: center;
             gap: 0.75rem;
-            background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(255,255,255,0.1);
+            background: var(--surface);
+            border: 1px solid var(--border);
             border-radius: 10px;
             padding: 0.8rem 1.3rem;
             text-decoration: none;
-            color: rgba(255,255,255,0.8);
+            color: var(--text);
             font-size: 0.875rem;
+            font-weight: 500;
+            box-shadow: var(--shadow-sm);
             transition: all 0.2s;
         }
 
+        .contact-icon {
+            width: 18px;
+            height: 18px;
+            object-fit: contain;
+            flex-shrink: 0;
+        }
+
         .contact-link:hover {
-            background: rgba(0,197,212,0.12);
-            border-color: rgba(0,197,212,0.4);
-            color: var(--teal);
+            border-color: rgba(1,118,211,0.35);
+            color: var(--blue);
+            box-shadow: var(--shadow-md);
             transform: translateY(-2px);
         }
 
         /* ── FOOTER ── */
         footer {
-            background: #030D1C;
+            background: var(--surface);
+            border-top: 1px solid var(--border);
             text-align: center;
             padding: 1.5rem;
-            color: rgba(255,255,255,0.25);
+            color: var(--muted);
             font-size: 0.78rem;
         }
 
@@ -695,7 +775,7 @@
 
     <!-- NAV -->
     <nav>
-        <div class="nav-logo">Abisheik M.</div>
+        <div class="nav-logo">Building Scalable Salesforce Solutions</div>
         <ul class="nav-links">
             <li><a href="#skills">Skills</a></li>
             <li><a href="#experience">Experience</a></li>
@@ -709,16 +789,19 @@
     <section id="hero">
         <div class="hero-content">
             <div class="hero-left">
-                <p class="hero-eyebrow">// Salesforce Developer Portfolio</p>
+                <p class="hero-eyebrow">Salesforce Developer</p>
                 <h1 class="hero-name">Abisheik<br><span>Murugesan</span></h1>
-                <p class="hero-role"><span id="typing-text"></span><span class="typing-cursor"></span></p>
+              <p class="hero-role">
+    <span id="typing-text"></span>
+    <span class="typing-cursor"></span>
+</p>
                 <p class="hero-summary">
                     Salesforce Developer with 1+ year of experience building scalable applications
                     for the Life Sciences domain. Specialized in Apex, LWC, Agentforce, and 2GP
                     Managed Package development for Patient Support Program solutions.
                 </p>
                 <div class="hero-cta">
-                    <a href="#experience" class="btn-primary">View Experience →</a>
+                    <a href="#experience" class="btn-primary">Explore My Work →</a>
                     <a href="#contact" class="btn-outline">Get in Touch</a>
                 </div>
             </div>
@@ -736,7 +819,7 @@
                         <div class="orbit-node node-api">REST API</div>
                         <div class="orbit-node node-cloud">Life Sciences</div>
                     </div>
-                    <div class="orbit-center">☁️</div>
+                    <div class="orbit-center"><img src="Assets/Salesforce.png" alt="Salesforce"></div>
                 </div>
             </div>
         </div>
@@ -896,7 +979,7 @@
 
                         <div class="project-divider"></div>
 
-                        <p class="job-project">💊 Copay FFU Transition — Regeneron <span style="font-size:0.75rem;color:var(--teal);font-weight:500;">(Jul 2026 – Present)</span></p>
+                        <p class="job-project">💊 Copay FFU Transition — Regeneron <span style="font-size:0.75rem;color:var(--teal-dark);font-weight:500;">(Jul 2026 – Present)</span></p>
                         <ul class="job-bullets">
                             <li>Supporting Salesforce-based healthcare workflow modernization and migration for Regeneron's Copay Transition FFU project.</li>
                             <li>Designing scalable transaction processing frameworks, integration orchestration, async processing, logging, and exception-handling mechanisms.</li>
@@ -933,31 +1016,31 @@
             <h2 class="section-title">Salesforce Certifications</h2>
             <div class="certs-grid">
                 <div class="cert-card">
-                    <div class="cert-badge">🏅</div>
+                    <img class="cert-badge" src="Assets/PlatformDev.png" alt="Salesforce Certified Platform Developer I badge">
                     <div>
                         <div class="cert-name">Salesforce Certified<br>Platform Developer I</div>
                         <div class="cert-issuer">Salesforce · Active</div>
                     </div>
                 </div>
                 <div class="cert-card">
-                    <div class="cert-badge">🏅</div>
+                    <img class="cert-badge" src="Assets/PlatformAdmin.png" alt="Salesforce Certified Administrator badge">
                     <div>
                         <div class="cert-name">Salesforce Certified<br>Administrator</div>
                         <div class="cert-issuer">Salesforce · Active</div>
                     </div>
                 </div>
                 <div class="cert-card">
-                    <div class="cert-badge">🤖</div>
+                    <img class="cert-badge" src="Assets/AgentforceSpecialist.png" alt="Salesforce Certified Agentforce Specialist badge">
                     <div>
                         <div class="cert-name">Salesforce Certified<br>Agentforce Specialist</div>
                         <div class="cert-issuer">Salesforce · Active</div>
                     </div>
                 </div>
                 <div class="cert-card">
-                    <div class="cert-badge">🧠</div>
+                    <img class="cert-badge" src="Assets/AIAssociate.png" alt="Salesforce Certified AI Associate badge">
                     <div>
                         <div class="cert-name">Salesforce Certified<br>AI Associate</div>
-                        <div class="cert-issuer">Salesforce · Active</div>
+                        <div class="cert-issuer">Salesforce · Retired</div>
                     </div>
                 </div>
             </div>
@@ -986,68 +1069,86 @@
     <!-- CONTACT -->
     <section id="contact">
         <div class="container">
-            <p class="section-label" style="color: rgba(0,197,212,0.75)">Let's Connect</p>
+            <p class="section-label">Let's Connect</p>
             <h2 class="section-title">Get in Touch</h2>
             <div class="contact-grid">
                 <a href="mailto:abisheikdeveloper@gmail.com" class="contact-link">
-                    <span>✉️</span> abisheikdeveloper@gmail.com
+                    <span class="contact-icon" style="font-size:1.05rem;line-height:1;">✉️</span> abisheikdeveloper@gmail.com
                 </a>
                 <a href="tel:+917339595304" class="contact-link">
-                    <span>📱</span> +91 73395 95304
+                    <img class="contact-icon" src="Assets/Phone.png" alt=""> +91 73395 95304
                 </a>
-                <a href="https://www.linkedin.com/in/abisheik-murugesan" target="_blank" rel="noopener" class="contact-link">
-                    <span>💼</span> LinkedIn
+                <a href="https://www.linkedin.com/in/abisheikm" target="_blank" rel="noopener" class="contact-link">
+                    <img class="contact-icon" src="Assets/LinkedIn.png" alt=""> LinkedIn
                 </a>
                 <a href="https://trailblazer.salesforce.com" target="_blank" rel="noopener" class="contact-link">
-                    <span>🏔️</span> Trailhead
+                    <span class="contact-icon" style="font-size:1.05rem;line-height:1;">🏔️</span> Trailhead
                 </a>
                 <a href="https://github.com/abisheikdev" target="_blank" rel="noopener" class="contact-link">
-                    <span>🐙</span> GitHub
+                    <img class="contact-icon" src="Assets/Github.png" alt=""> GitHub
                 </a>
                 <a class="contact-link" style="cursor:default;">
-                    <span>📍</span> Coimbatore, Tamil Nadu
+                    <span class="contact-icon" style="font-size:1.05rem;line-height:1;">📍</span> Coimbatore, Tamil Nadu
                 </a>
             </div>
         </div>
     </section>
 
     <footer>
-        <p>© 2026 Abisheik Murugesan &nbsp;·&nbsp; Salesforce Developer &nbsp;·&nbsp; Deployed on GitHub Pages</p>
+        <p>© 2026 Abisheik Murugesan &nbsp;·&nbsp; Salesforce Developer </p>
     </footer>
 
-    <script>
+ <script>
         // ── Typing animation ──
         const roles = [
             'Salesforce Developer',
-            'LWC Specialist',
-            'Agentforce Builder',
-            'Life Sciences Expert',
-            'API Integration Dev'
+            'LWC Developer',
+            'Agentforce Developer'
+            
         ];
 
-        let roleIndex = 0, charIndex = 0, isDeleting = false;
-        const el = document.getElementById('typing-text');
+  let roleIndex = 0, charIndex = 0, isDeleting = false, isPaused = false;
+const el = document.getElementById('typing-text');
 
-        function type() {
-            const current = roles[roleIndex];
-            el.textContent = isDeleting
-                ? current.substring(0, charIndex - 1)
-                : current.substring(0, charIndex + 1);
+function type() {
+    if (isPaused) return;
 
-            charIndex += isDeleting ? -1 : 1;
+    const current = roles[roleIndex];
 
-            let delay = isDeleting ? 55 : 95;
+    if (isDeleting) {
+        el.textContent = current.substring(0, charIndex - 1);
+        charIndex--;
+    } else {
+        el.textContent = current.substring(0, charIndex + 1);
+        charIndex++;
+    }
 
-            if (!isDeleting && charIndex === current.length) {
-                delay = 2200; isDeleting = true;
-            } else if (isDeleting && charIndex === 0) {
-                isDeleting = false;
-                roleIndex = (roleIndex + 1) % roles.length;
-                delay = 350;
-            }
+    // Natural random typing speed
+    let delay = isDeleting
+        ? 35 + Math.random() * 25          // fast delete: 35–60ms
+        : 80 + Math.random() * 60;         // natural type: 80–140ms
 
-            setTimeout(type, delay);
-        }
+    // Pause at end of word before deleting
+    if (!isDeleting && charIndex === current.length) {
+        isPaused = true;
+        setTimeout(() => {
+            isPaused = false;
+            isDeleting = true;
+            setTimeout(type, 100);
+        }, 2000);                           // hold word for 2s
+        return;
+    }
+
+    // Pause briefly before typing next word
+    if (isDeleting && charIndex === 0) {
+        isDeleting = false;
+        roleIndex = (roleIndex + 1) % roles.length;
+        setTimeout(type, 500);             // gap between words
+        return;
+    }
+
+    setTimeout(type, delay);
+}
 
         type();
 
